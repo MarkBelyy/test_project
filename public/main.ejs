@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Main</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <img src="./img/Logo.svg" alt="logo">
+            <ul class="nav-ref">
+                <li class="nav-item"><a class="nav-ref-item nav-prime" href="/">ГЛАВНАЯ</a></li>
+                <li class="nav-item"><a class="nav-ref-item" href="analytics">АНАЛИТИКА</a></li>
+            </ul>
+            <img src="./img/ava40 2.svg" alt="ava">
+        </nav>
+    </header>
+    <main>
+        <div class="main-container">
+            <form class="search">
+                <input class="search-input" type="text" id="search" name="search"
+                    placeholder="Поиск прибора в Botanique по номеру, названию, подразделению и др.">
+            </form>
+            <div class="like">
+                <div class="like-header">
+                    <img class="like-img" src="./img/Color.svg" alt="like">
+                    <h3 class="like-header-text">Любимые приборы</h3>
+                </div>
+                <div class="like-list">
+                    <div class="like-list-header">
+                        <h4 class="like-list-header-text">Название</h4>
+                        <h4 class="like-list-header-text">Статус</h4>
+                    </div>
+
+                    <% if (devices.length> 0) { %>
+                        <% devices.forEach(({img, name})=> { %>
+                            <div class="like-list-item">
+                            <div class="like-list-item-container1">
+                                <img src="<%= img %>" alt="device img" class="like-list-item-img1">
+                                <h4 class="like-list-item-text">
+                                    <%= name %>
+                                </h4>
+                            </div>
+                            <div class="like-list-item-container2">
+                                <select class="like-list-item-dropdown">
+                                    <option value="true">Свободен</option>
+                                    <option value="false">В работе</option>
+                                </select>
+                                <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
+                            </div>
+                </div>
+                <% }) %>
+                    <% } %>
+
+                        <!-- <div class="like-list-item">
+                        <div class="like-list-item-container1">
+                            <img src="./img/pH.png" alt="" class="like-list-item-img1">
+                            <p class="like-list-item-text">pH-метр Mettler-Toledo International, Inc. SevenCompact S220
+                            </p>
+                        </div>
+                        <div class="like-list-item-container2">
+                            <select class="like-list-item-dropdown">
+                                <option value="true">Свободен</option>
+                                <option value="false">В работе</option>
+                              </select>
+                            <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
+                        </div>
+                    </div>
+
+                    <div class="like-list-item">
+                        <div class="like-list-item-container1">
+                            <img src="./img/pH.png" alt="" class="like-list-item-img1">
+                            <p class="like-list-item-text">pH-метр Mettler-Toledo International, Inc. SevenCompact S220
+                            </p>
+                        </div>
+                        <div class="like-list-item-container2">
+                            <select class="like-list-item-dropdown">
+                                <option value="true">Свободен</option>
+                                <option value="false">В работе</option>
+                              </select>
+                            <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
+                        </div>
+                        
+                    </div>
+                    <div class="like-list-item">
+                        <div class="like-list-item-container1">
+                            <img src="./img/pH.png" alt="" class="like-list-item-img1">
+                            <p class="like-list-item-text">pH-метр Mettler-Toledo International, Inc. SevenCompact S220
+                            </p>
+                        </div>
+                        <div class="like-list-item-container2">
+                            <select class="like-list-item-dropdown">
+                                <option value="true">Свободен</option>
+                                <option value="false">В работе</option>
+                              </select>
+                            <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
+                        </div>
+                    </div>
+                    <div class="like-list-item">
+                        <div class="like-list-item-container1">
+                            <img src="./img/pH.png" alt="" class="like-list-item-img1">
+                            <p class="like-list-item-text">pH-метр Mettler-Toledo International, Inc. SevenCompact S220
+                            </p>
+                        </div>
+                        <div class="like-list-item-container2">
+                            <select class="like-list-item-dropdown">
+                                <option value="true">Свободен</option>
+                                <option value="false">В работе</option>
+                              </select>
+                            <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
+                        </div>
+                    </div>
+                    <div class="like-list-item last-item">
+                        <div class="like-list-item-container1">
+                            <img src="./img/pH.png" alt="" class="like-list-item-img1">
+                            <p class="like-list-item-text">pH-метр Mettler-Toledo International, Inc. SevenCompact S220
+                            </p>
+                        </div>
+                        <div class="like-list-item-container2">
+                            <select class="like-list-item-dropdown">
+                                <option value="true">Свободен</option>
+                                <option value="false">В работе</option>
+                              </select>
+                            <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
+                        </div>
+                    </div> -->
+            </div>
+        </div>
+        </div>
+    </main>
+</body>
+
+</html>
