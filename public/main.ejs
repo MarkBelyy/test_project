@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Main</title>
+    <title><%= title %></title>
     <link rel="stylesheet" href="/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,7 @@
                         <h4 class="like-list-header-text">Название</h4>
                         <h4 class="like-list-header-text">Статус</h4>
                     </div>
-
+                    <div class="like-list-item-overflow">
                     <% if (devices.length> 0) { %>
                         <% devices.forEach(({img, name})=> { %>
                             <div class="like-list-item">
@@ -58,6 +58,7 @@
                 </div>
                 <% }) %>
                     <% } %>
+                </div>
 
                         <!-- <div class="like-list-item">
                         <div class="like-list-item-container1">

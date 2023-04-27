@@ -15,6 +15,7 @@ app.listen(PORT, (error) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
+    const title ='Главная';
     const devices = [
         {
             name: 'pH-метр Mettler-Toledo International, Inc. SevenCompact S220',
@@ -46,15 +47,17 @@ app.get('/', (req, res) => {
         }
         
     ]
-    res.render(createPath('main'), {devices});
+    res.render(createPath('main'), {devices, title});
 });
 
 app.get('/analytics', (req, res) => {
-    res.render(createPath('analytics'));
+    const title = 'Аналитика';
+    res.render(createPath('analytics'), {title});
 });
 
 app.use((req, res) => {
+    const title = 'Страница не найдена';
     res
         .status(404)
-        .sendFile(createPath('error'))
+        .sendFile(createPath('error'), {title})
 });
