@@ -10,7 +10,7 @@ const devicesSchema = new Schema({
         type: Boolean,
         required: true,
     },
-    usings: {
+    using: {
         type: Array,
         required: true,
     },

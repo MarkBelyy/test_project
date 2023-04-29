@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
         .find()
         .then((devices) => {
             res.render(createPath('main'), { devices, title })
-            console.log('devices:', devices)
+            // console.log('devices:', devices)
         })
         .catch((err) => {
             console.log('err:', err);
@@ -37,9 +37,38 @@ app.get('/', (req, res) => {
         })
 });
 
+app.get('/search', (req, res) => {
+    const searchQuery = req.query.query.trim();
+    const searchRegex = new RegExp(searchQuery, 'i');
+    Devices
+        .find({ name: searchRegex })
+        .then(devices => {
+            res.json(devices);
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(500).json({ error: 'Ошибка сервера' });
+        });
+});
+
 app.get('/analytics', (req, res) => {
     const title = 'Аналитика';
     res.render(createPath('analytics'), { title });
+});
+
+app.get('/analytics/:id', (req, res) => {
+    const title = 'Аналитика';
+    console.log('deviceId ', req.params.id)
+    Devices
+        .findById(req.params.id)
+        .then(device => {
+            // res.render(createPath('analytics'), { device, title });
+            console.log('device:', device);
+        })
+        .catch(err => {
+            console.log('err:', err);
+            // render(createPath('error'), {title})
+        })
 });
 
 app.use((req, res) => {

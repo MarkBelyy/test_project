@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>
         <%= title %>
@@ -30,6 +29,7 @@
                 <input class="search-input" type="text" id="search" name="search"
                     placeholder="Поиск прибора в Botanique по номеру, названию, подразделению и др.">
             </form>
+            <div id="search-results"></div>
             <div class="like">
                 <div class="like-header">
                     <img class="like-img" src="./img/Color.svg" alt="like">
@@ -63,83 +63,45 @@
                                         <% }) %>
                                             <% } %>
                     </div>
-
-                    <!-- <div class="like-list-item">
-                        <div class="like-list-item-container1">
-                            <img src="./img/pH.png" alt="" class="like-list-item-img1">
-                            <p class="like-list-item-text">pH-метр Mettler-Toledo International, Inc. SevenCompact S220
-                            </p>
-                        </div>
-                        <div class="like-list-item-container2">
-                            <select class="like-list-item-dropdown">
-                                <option value="true">Свободен</option>
-                                <option value="false">В работе</option>
-                              </select>
-                            <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
-                        </div>
-                    </div>
-
-                    <div class="like-list-item">
-                        <div class="like-list-item-container1">
-                            <img src="./img/pH.png" alt="" class="like-list-item-img1">
-                            <p class="like-list-item-text">pH-метр Mettler-Toledo International, Inc. SevenCompact S220
-                            </p>
-                        </div>
-                        <div class="like-list-item-container2">
-                            <select class="like-list-item-dropdown">
-                                <option value="true">Свободен</option>
-                                <option value="false">В работе</option>
-                              </select>
-                            <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
-                        </div>
-                        
-                    </div>
-                    <div class="like-list-item">
-                        <div class="like-list-item-container1">
-                            <img src="./img/pH.png" alt="" class="like-list-item-img1">
-                            <p class="like-list-item-text">pH-метр Mettler-Toledo International, Inc. SevenCompact S220
-                            </p>
-                        </div>
-                        <div class="like-list-item-container2">
-                            <select class="like-list-item-dropdown">
-                                <option value="true">Свободен</option>
-                                <option value="false">В работе</option>
-                              </select>
-                            <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
-                        </div>
-                    </div>
-                    <div class="like-list-item">
-                        <div class="like-list-item-container1">
-                            <img src="./img/pH.png" alt="" class="like-list-item-img1">
-                            <p class="like-list-item-text">pH-метр Mettler-Toledo International, Inc. SevenCompact S220
-                            </p>
-                        </div>
-                        <div class="like-list-item-container2">
-                            <select class="like-list-item-dropdown">
-                                <option value="true">Свободен</option>
-                                <option value="false">В работе</option>
-                              </select>
-                            <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
-                        </div>
-                    </div>
-                    <div class="like-list-item last-item">
-                        <div class="like-list-item-container1">
-                            <img src="./img/pH.png" alt="" class="like-list-item-img1">
-                            <p class="like-list-item-text">pH-метр Mettler-Toledo International, Inc. SevenCompact S220
-                            </p>
-                        </div>
-                        <div class="like-list-item-container2">
-                            <select class="like-list-item-dropdown">
-                                <option value="true">Свободен</option>
-                                <option value="false">В работе</option>
-                              </select>
-                            <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
     </main>
-</body>
+    <script>
+    const searchInput = document.getElementById('search');
+    const searchResults = document.getElementById('search-results');
+    searchInput.addEventListener('input', () => {
+        const searchValue = searchInput.value.trim();
 
+        if (searchValue.length >= 2) {
+            fetch(`/search?query=${searchValue}`)
+                .then(response => response.json())
+                .then(data => {
+                    searchResults.innerHTML = '';
+
+                    if (data.length > 0) {
+                        const resultList = document.createElement('ul');
+                        resultList.classList.add('search-results-list');
+
+                        data.forEach(device => {
+                            const resultItem = document.createElement('li');
+                            resultItem.classList.add('search-results-item');
+                            resultItem.textContent = device.name;
+
+                            resultItem.addEventListener('click', () => {
+                                console.log('Выбрано устройство:', device);
+                                window.location.href = `/analytics/${device._id}`;
+                            });
+                            resultList.appendChild(resultItem);
+                        });
+                        searchResults.appendChild(resultList);
+                    }
+                })
+                .catch(error => console.error(error));
+        } else {
+            searchResults.innerHTML = '';
+        }
+    });
+    </script>
+</body>
 </html>
