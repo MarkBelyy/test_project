@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>
         <%= title %>
@@ -26,13 +27,13 @@
     <main>
         <div class="main-container">
             <form class="search">
-                <input class="search-input" type="text" id="search" name="search"
+                <input class="search-input" type="text" id="search" name="search" autocomplete="off"
                     placeholder="Поиск прибора в Botanique по номеру, названию, подразделению и др.">
             </form>
-            <div id="search-results"></div>
+            <div class="search-results" id="search-results"></div>
             <div class="like">
                 <div class="like-header">
-                    <img class="like-img" src="./img/Color.svg" alt="like">
+                    <img class="like-img" src="./img/dislike.svg" alt="like">
                     <h3 class="like-header-text">Любимые приборы</h3>
                 </div>
                 <div class="like-list">
@@ -68,40 +69,65 @@
         </div>
     </main>
     <script>
-    const searchInput = document.getElementById('search');
-    const searchResults = document.getElementById('search-results');
-    searchInput.addEventListener('input', () => {
-        const searchValue = searchInput.value.trim();
+        const searchInput = document.getElementById('search');
+        const searchResults = document.getElementById('search-results');
 
-        if (searchValue.length >= 2) {
-            fetch(`/search?query=${searchValue}`)
-                .then(response => response.json())
-                .then(data => {
-                    searchResults.innerHTML = '';
+        searchInput.addEventListener('input', () => {
+            const searchValue = searchInput.value.trim();
 
-                    if (data.length > 0) {
-                        const resultList = document.createElement('ul');
-                        resultList.classList.add('search-results-list');
+            if (searchValue.length >= 2) {
+                fetch(`/search?query=${searchValue}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        searchResults.innerHTML = '';
 
-                        data.forEach(device => {
-                            const resultItem = document.createElement('li');
-                            resultItem.classList.add('search-results-item');
-                            resultItem.textContent = device.name;
+                        if (data.length > 0) {
+                            const resultList = document.createElement('ul');
+                            resultList.classList.add('search-results-list');
 
-                            resultItem.addEventListener('click', () => {
-                                console.log('Выбрано устройство:', device);
-                                window.location.href = `/analytics/${device._id}`;
+                            data.forEach(device => {
+                                const resultItem = document.createElement('li');
+                                resultItem.classList.add('search-results-item');
+                                resultItem.textContent = device.name;
+
+                                // Добавляем картинку справа от найденного элемента в зависимости от значения device.like
+                                const icon = document.createElement('div');
+                                icon.classList.add('search-results-icon');
+                                icon.innerHTML = device.like ? `<svg width="20" height="19" 
+                                viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" 
+                                d="M10 18.35L8.55 17.03C3.4 12.36 0 9.28 0 5.5C0
+                                2.42 2.42 0 5.5 0C7.24 0 8.91 0.81 10 2.09C11.09
+                                0.81 12.76 0 14.5 0C17.58 0 20 2.42 20 5.5C20
+                                9.28 16.6 12.36 11.45 17.04L10 18.35Z" fill="#EE3F44"/>
+                                </svg>` : `<svg width="20" height="19" viewBox="0 0 17 16"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M8.49999 15.7917L7.29166 14.6917C2.99999 
+                                10.8 0.166656 8.23333 0.166656 5.08333C0.166656 
+                                2.51667 2.18332 0.5 4.74999 0.5C6.19999 0.5 7.59166
+                                1.175 8.49999 2.24167C9.40832 1.175 10.8 0.5 12.25
+                                0.5C14.8167 0.5 16.8333 2.51667 16.8333 5.08333C16.8333
+                                    8.23333 14 10.8 9.70832 14.7L8.49999 15.7917Z" fill="#818181"/>
+                                </svg>`;
+
+                                resultItem.appendChild(icon);
+
+                                resultItem.addEventListener('click', () => {
+                                    console.log('Выбрано устройство:', device);
+                                    window.location.href = `/analytics/${device._id}`;
+                                });
+                                resultList.appendChild(resultItem);
                             });
-                            resultList.appendChild(resultItem);
-                        });
-                        searchResults.appendChild(resultList);
-                    }
-                })
-                .catch(error => console.error(error));
-        } else {
-            searchResults.innerHTML = '';
-        }
-    });
+                            searchResults.appendChild(resultList);
+                        }
+                    })
+                    .catch(error => console.error(error));
+            } else {
+                searchResults.innerHTML = '';
+            }
+        })
     </script>
 </body>
+
 </html>

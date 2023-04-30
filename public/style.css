@@ -12,7 +12,7 @@ body {
 }
 
 .error-header {
-  font-size: 700px;
+  font-size: 500px;
 }
 
 .nav {
@@ -78,6 +78,20 @@ body {
   height: 56px;
   width: 100%;
   padding-left: 16px;
+}
+
+.search-results {
+  position: absolute;
+  right: 172px;
+  left: 172px;
+  z-index: 9999;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.search-results-item {
+  display: flex;
+  justify-content: space-between;
 }
 
 .like {
