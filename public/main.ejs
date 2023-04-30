@@ -72,7 +72,7 @@
         const searchInput = document.getElementById('search');
         const searchResults = document.getElementById('search-results');
 
-        searchInput.addEventListener('input', () => {
+        const showResults = () => {
             const searchValue = searchInput.value.trim();
 
             if (searchValue.length >= 2) {
@@ -84,7 +84,7 @@
                         if (data.length > 0) {
                             const resultList = document.createElement('ul');
                             resultList.classList.add('search-results-list');
-
+                            searchResults.classList.add('search-results-focus');
                             data.forEach(device => {
                                 const resultItem = document.createElement('li');
                                 resultItem.classList.add('search-results-item');
@@ -125,8 +125,18 @@
                     .catch(error => console.error(error));
             } else {
                 searchResults.innerHTML = '';
+                searchResults.classList.remove('search-results-focus');
             }
-        })
+        }
+
+        searchInput.addEventListener('input', showResults);
+
+        searchInput.addEventListener('focus', showResults);
+
+        searchInput.addEventListener('blur', () => {
+            searchResults.classList.remove('search-results-focus');
+            searchResults.innerHTML = '';
+        });
     </script>
 </body>
 
