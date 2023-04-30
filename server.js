@@ -47,7 +47,9 @@ app.get('/search', (req, res) => {
         })
         .catch(error => {
             console.error(error);
-            res.status(500).json({ error: 'Ошибка сервера' });
+            res
+            .status(500)
+            .json({ error: 'Ошибка сервера' });
         });
 });
 

@@ -93,7 +93,7 @@ input:focus {
   left: 172px;
   z-index: 9999;
   border-radius: 4px;
-  max-height: 140px;
+  max-height: 136px;
   overflow: auto;
 }
 .search-results-focus {
@@ -103,7 +103,7 @@ input:focus {
 }
 .search-results-item {
   padding-left: 16px;
-  padding-right: 16px;
+  padding-right: 35px;
   margin-top: 8px;
   margin-bottom: 8px;
   display: flex;
