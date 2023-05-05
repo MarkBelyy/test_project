@@ -21,6 +21,8 @@ app.listen(PORT, (error) => {
     error ? console.error(errer) : console.log(`listen ${PORT}`)
 });
 
+// app.use(express.urlencoded({ extended: false }));
+
 app.use(express.static('public'));
 
 app.use((req, res, next) => {

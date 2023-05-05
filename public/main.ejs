@@ -43,21 +43,21 @@
                     </div>
                     <div class="like-list-item-overflow">
                         <% if (devices.length > 0) { %>
-                            <% devices.forEach(({ img, name, like, free }) => { %>
+                            <% devices.forEach(({ img, name, like, free,  _id}) => { %>
                               <% if (like === true) { %>
-                                <div class="like-list-item">
-                                  <div class="like-list-item-container1">
-                                    <img src="<%= img %>" alt="device img" class="like-list-item-img1">
-                                    <h4 class="like-list-item-text">
+                                <div class="like-list-item"  id="<%= _id %>">
+                                  <div class="like-list-item-container1" id="<%= _id %>">
+                                    <img src="<%= img %>" alt="device img" class="like-list-item-img1" id="<%= _id %>">
+                                    <h4 class="like-list-item-text" id="<%= _id %>">
                                       <%= name %>
                                     </h4>
                                   </div>
-                                  <div class="like-list-item-container2">
-                                    <select class="like-list-item-dropdown">
+                                  <div class="like-list-item-container2" id="<%= _id %>">
+                                    <select class="like-list-item-dropdown" id="<%= _id %>">
                                       <option class="like-list-item-dropdown-option" value="true" <%= free === true ? 'selected' : '' %>>Свободен</option>
                                       <option class="like-list-item-dropdown-option" value="false" <%= free === false ? 'selected' : '' %>>В работе</option>
                                     </select>
-                                    <img src="./img/Vector.svg" alt="" class="like-list-item-img2">
+                                    <img src="./img/Vector.svg" alt="" class="like-list-item-img2" id="<%= _id %>">
                                   </div>
                                 </div>
                               <% } %>
