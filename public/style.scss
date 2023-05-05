@@ -95,14 +95,14 @@ input:focus {
     left: 172px;
     z-index: 9999;
     border-radius: 4px;
-&-focus {
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-}
-max-height: 136px;
+    &-focus {
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+    max-height: 136px;
     overflow: auto;
-    
+
     &-item {
         padding-left: 16px;
         padding-right: 35px;
@@ -219,6 +219,19 @@ max-height: 136px;
         line-height: 20px;
         letter-spacing: 0.25px;
         color: rgba(0, 0, 0, 0.6);
+        &-green {
+            color: #23b04a;
+            border: 1px solid #23b04a;
+        }
+        // &-option {
+        //     font-family: "Roboto";
+        //     font-style: normal;
+        //     font-weight: 400;
+        //     font-size: 14px;
+        //     line-height: 20px;
+        //     letter-spacing: 0.25px;
+        //     color: rgba(0, 0, 0, 0.6);
+        // }
     }
     &-img2 {
         margin-right: 22px;

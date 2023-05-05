@@ -21,7 +21,13 @@ app.listen(PORT, (error) => {
     error ? console.error(errer) : console.log(`listen ${PORT}`)
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
+
+app.use((req, res, next) => {
+    console.log(`path: ${req.path}`);
+    console.log(`method: ${req.method}`);
+    next();
+})
 
 app.get('/', (req, res) => {
     const title = 'Главная';
@@ -64,8 +70,8 @@ app.get('/analytics/:id', (req, res) => {
     Devices
         .findById(req.params.id)
         .then(device => {
-            // res.render(createPath('analytics'), { device, title });
-            console.log('device:', device);
+            res.render(createPath('analytics'), { device, title });
+            // console.log('device:', device);
         })
         .catch(err => {
             console.log('err:', err);

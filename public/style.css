@@ -209,6 +209,10 @@ input:focus {
   letter-spacing: 0.25px;
   color: rgba(0, 0, 0, 0.6);
 }
+.like-list-item-dropdown-green {
+  color: #23b04a;
+  border: 1px solid #23b04a;
+}
 .like-list-item-img2 {
   margin-right: 22px;
 }

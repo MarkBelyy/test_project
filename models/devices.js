@@ -17,6 +17,10 @@ const devicesSchema = new Schema({
     img: {
         type: String,
         required: true,
+    },
+    free: {
+        type: Boolean,
+        required: true,
     }
 });
 

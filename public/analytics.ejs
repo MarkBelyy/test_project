@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <title><%= title %></title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap"
     rel="stylesheet">
-  <!-- <script src="analytics.js"></script> -->
 </head>
 
 <body>
   <header>
     <nav class="nav">
-      <img src="./img/Logo.svg" alt="logo">
+      <img src="/img/Logo.svg" alt="logo">
       <ul class="nav-ref">
         <li class="nav-item"><a class="nav-ref-item" href="/">ГЛАВНАЯ</a></li>
         <li class="nav-item"><a class="nav-ref-item nav-prime2" href="analytics">АНАЛИТИКА</a></li>
       </ul>
-      <img src="./img/ava40 2.svg" alt="ava">
+      <img src="/img/ava40 2.svg" alt="ava">
     </nav>
   </header>
   <main>
@@ -27,10 +25,10 @@
       <div class="analytics-header">
         <div class="analytics-header-container-left">
           <div class="analytics-header-img">
-            <img class="analytics-header-img" src="./img/pH.png" alt="device">
+            <img class="analytics-header-img" src="<%= device.img %>" alt="device">
           </div>
           <div class="analytics-header-info">
-            <h3 class="analytics-header-name">pH-метр Mettler-Toledo International, Inc. SevenCompact S220</h3>
+            <h3 class="analytics-header-name"><%= device.name %></h3>
             <div class="analytics-header-state">
               <p class="analytics-header-state-text">S1.4.I14-9.001</p>
               <img src="./img/Text.svg" alt="" class="analytics-header-state-svg">
