@@ -1,7 +1,7 @@
 const searchInput = document.getElementById('search');
 const searchResults = document.getElementById('search-results');
 const dropdowns = document.querySelectorAll(".like-list-item-dropdown");
-const devicesList = document.querySelectorAll(".like-list-item")
+const devicesList = document.querySelectorAll(".like-list-item-touch")
 
 function handleDropdownOnLoad() {
     dropdowns.forEach((dropdown) => {
@@ -15,23 +15,35 @@ function handleDropdownOnLoad() {
 
 dropdowns.forEach((dropdown) => {
     dropdown.addEventListener("change", () => {
-        console.log('dropdown.value:', dropdown.value);
+        console.log('dropdown.value:',);
+        console.log('dropdown.id:', dropdown.id);
+        let data = false;
+
         if (dropdown.value === "false") {
             dropdown.classList.add('like-list-item-dropdown-green')
+            data = JSON.stringify({ free: false })
         } else {
+            data = JSON.stringify({ free: true })
             dropdown.classList.remove('like-list-item-dropdown-green')
         }
+        fetch(`/device/work/${dropdown.id}`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: data
+        }).then(data => console.log(data))
+            .catch(error => console.error(error));
     });
 });
+
 
 window.onload = handleDropdownOnLoad;
 
 devicesList.forEach(item => {
     item.addEventListener('click', (e) => {
-      const id = e.target.id;
-      window.location.href = `/analytics/${id}`;
+        const id = e.target.id;
+        window.location.href = `/analytics/${id}`;
     });
-  });
+});
 
 const showResults = () => {
     const searchValue = searchInput.value.trim();

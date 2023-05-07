@@ -46,8 +46,8 @@
                             <% devices.forEach(({ img, name, like, free,  _id}) => { %>
                               <% if (like === true) { %>
                                 <div class="like-list-item"  id="<%= _id %>">
-                                  <div class="like-list-item-container1" id="<%= _id %>">
-                                    <img src="<%= img %>" alt="device img" class="like-list-item-img1" id="<%= _id %>">
+                                  <div class="like-list-item-container1 like-list-item-touch" id="<%= _id %>">
+                                    <img src="<%= img %>" alt="device img" class="like-list-item-img1 like-list-item-touch" id="<%= _id %>">
                                     <h4 class="like-list-item-text" id="<%= _id %>">
                                       <%= name %>
                                     </h4>

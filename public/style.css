@@ -272,17 +272,23 @@ input:focus {
 .analytics-header-select {
   width: 97px;
   height: 24px;
-  border: 1px solid #23b04a;
+  border: 1px solid rgba(0, 0, 0, 0.38);
   border-radius: 2px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
-  color: #23b04a;
+  background-color: #fff;
+  padding: 2px 4px 2px 8px;
+  color: rgba(0, 0, 0, 0.6);
   background: #ffffff;
   margin-right: 18px;
   padding-left: 6px;
+}
+.analytics-header-select-green {
+  color: #23b04a;
+  border: 1px solid #23b04a;
 }
 .analytics-header-state {
   display: flex;
@@ -306,6 +312,8 @@ input:focus {
 .analytics-header-like {
   margin-right: 21px;
   margin-top: 3px;
+  width: 20px;
+  height: 19px;
 }
 
 .device {

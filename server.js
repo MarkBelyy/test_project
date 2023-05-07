@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 const Devices = require('./models/devices');
 
 
@@ -21,9 +22,13 @@ app.listen(PORT, (error) => {
     error ? console.error(errer) : console.log(`listen ${PORT}`)
 });
 
-// app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static('public'));
+
+app.use(methodOverride('_method'));
+
+app.use(express.json());
 
 app.use((req, res, next) => {
     console.log(`path: ${req.path}`);
@@ -56,8 +61,8 @@ app.get('/search', (req, res) => {
         .catch(error => {
             console.error(error);
             res
-            .status(500)
-            .json({ error: 'Ошибка сервера' });
+                .status(500)
+                .json({ error: 'Ошибка сервера' });
         });
 });
 
@@ -80,6 +85,32 @@ app.get('/analytics/:id', (req, res) => {
             // render(createPath('error'), {title})
         })
 });
+
+app.post('/device/work/:id', (req, res) => {
+    console.log('deviceId ', req.params.id)
+    console.log("req.body", req.body.free)
+
+    Devices.findByIdAndUpdate(req.params.id, { $set: { free: req.body.free } })
+        .then(() => res.json({ message: "Success" }))
+        .catch((error) => {
+            console.error(error);
+            res.status(500).json({ error: "Server Error" });
+        });
+});
+
+app.post('/device/like/:id', (req, res) => {
+    console.log('deviceId ', req.params.id)
+    console.log("req.body", req.body.free)
+
+    Devices.findByIdAndUpdate(req.params.id, { $set: { free: req.body.free } })
+        .then(() => res.json({ message: "Success" }))
+        .catch((error) => {
+            console.error(error);
+            res.status(500).json({ error: "Server Error" });
+        });
+});
+
+
 
 app.use((req, res) => {
     const title = 'Страница не найдена';
