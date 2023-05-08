@@ -515,13 +515,11 @@ input:focus {
 .period-prime {
     background: #c2e7c8;
 }
-.device {
-    &-table {
+.device-table {
         display: flex;
         justify-content: space-between;
         margin-top: 44px;
-    }
-    &-table-header {
+    &-header {
         font-size: 14px;
         line-height: 20px;
         display: flex;
@@ -531,10 +529,10 @@ input:focus {
         padding-bottom: 12px;
         border-bottom: 1px solid rgba(33, 33, 33, 0.08);
     }
-    &-table-row {
+    &-row {
         display: flex;
         margin-top: 12px;
-        padding-bottom: 110px;
+        height: 124px;
         border-bottom: 1px solid rgba(33, 33, 33, 0.08);
         font-family: "Roboto";
         font-style: normal;
@@ -544,13 +542,24 @@ input:focus {
         letter-spacing: 0.25px;
         color: rgba(0, 0, 0, 0.6);
     }
-    &-table-work-container {
+    &-work-container {
         display: flex;
     }
-    &-table-overflow{
+    &-overflow{
         height: 262px;
         overflow: auto;
     }
+    &-workstatus{
+        color: #23B04A;
+    }
+    &-svg{
+        margin-left: 5px;
+    }
+}
+
+.work-label{
+    font-weight:bold;
+    margin-right: 5px;
 }
 
 // .column1,
@@ -566,17 +575,20 @@ input:focus {
 //     flex-grow: 0.5;
 // }
 
-.column1,
+.column1{
+    width: 14.5%;
+}
+
 .column2 {
-    width: 17.5%;
+    width: 12.5%;
 }
 
 .column3 {
-    width: 32%;
+    width: 39%;
 }
 
 .column4 {
-    width: 19.5%;
+    width: 20.5%;
 }
 
 .column5 {

@@ -122,32 +122,32 @@ function updateTable() {
             </div>
             <div class="device-table-row-item column2">
               <p class="device-table-workstatus">В работе</p>
-              <p class="device-table-worktype">${item.type}</p>
+              <p class="device-table-worktype">${item.type ? item.type : ''}</p>
             </div>
             <div class="device-table-row-item column3">
               <div class="device-table-work-container">
-                <p class="device-table-workcolumn-label">Номер колонки:</p>
-                <p class="device-table-workcolumn">${item.works.column}</p>
+                <p class="device-table-workcolumn-label work-label ">Номер колонки:</p>
+                <p class="device-table-workcolumn">${item.works.column ? item.works.column : ''}</p>
               </div>
               <div class="device-table-work-container">
-                <p class="device-table-worksample-label">Образец:</p>
-                <p class="device-table-worksample">${item.works.sample}</p>
+                <p class="device-table-worksample-label work-label">Образец:</p>
+                <p class="device-table-worksample">${item.works.sample ? item.works.sample : ''}</p>
               </div>
               <div class="device-table-work-container">
-                <p class="device-table-workmethod-label">Метод:</p>
-                <p class="device-table-workmethod">${item.works.method}</p>
+                <p class="device-table-workmethod-label work-label">Метод:</p>
+                <p class="device-table-workmethod">${item.works.method ? item.works.method : ''}</p>
               </div>
             </div>
             <div class="device-table-row-item  df column4">
-              <p class="device-table-result">${item.results}</p>
-              <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <p class="device-table-result">${item.results ? item.results : ''}</p>
+              <svg class="device-table-svg" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                   d="M5.50001 9.50002L2.00001 6.00002L0.833344 7.16669L5.50001 11.8334L15.5 1.83335L14.3333 0.666687L5.50001 9.50002Z"
                   fill="#23B04A" />
               </svg>
             </div>
             <div class="device-table-row-item">
-              <p class="device-table-user">${item.user}</p>
+              <p class="device-table-user">${item.user ? item.user : ''}</p>
             </div>
 `
             deviceTable.appendChild(row);

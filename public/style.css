@@ -481,7 +481,7 @@ input:focus {
 .device-table-row {
   display: flex;
   margin-top: 12px;
-  padding-bottom: 110px;
+  height: 124px;
   border-bottom: 1px solid rgba(33, 33, 33, 0.08);
   font-family: "Roboto";
   font-style: normal;
@@ -498,18 +498,32 @@ input:focus {
   height: 262px;
   overflow: auto;
 }
+.device-table-workstatus {
+  color: #23B04A;
+}
+.device-table-svg {
+  margin-left: 5px;
+}
 
-.column1,
+.work-label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.column1 {
+  width: 14.5%;
+}
+
 .column2 {
-  width: 17.5%;
+  width: 12.5%;
 }
 
 .column3 {
-  width: 32%;
+  width: 39%;
 }
 
 .column4 {
-  width: 19.5%;
+  width: 20.5%;
 }
 
 .column5 {

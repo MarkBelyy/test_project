@@ -68,8 +68,16 @@ app.get('/search', (req, res) => {
 
 app.get('/analytics', (req, res) => {
     const title = 'Аналитика';
-    res.render(createPath('analytics'), { title });
+    Devices
+        .findOne()
+        .then((device) => {
+            res.render(createPath('analytics'), { device, title });
+        })
+        .catch((err) => {
+            console.log('err:', err);
+        })
 });
+
 
 app.get('/analytics/:id', (req, res) => {
     const title = 'Аналитика';
