@@ -12,6 +12,7 @@ body {
 .error-header {
     font-size: 500px;
 }
+
 .df {
     display: flex;
 }
@@ -305,7 +306,7 @@ input:focus {
     }
 
     &-select {
-        width: 97px;
+        // width: 97px;
         height: 24px;
         border: 1px solid rgba(0, 0, 0, 0.38);
         border-radius: 2px;
@@ -425,6 +426,7 @@ input:focus {
             /* 01. Primary/500 */
             color: #23b04a;
         }
+
         &-menu {
             margin-top: 8px;
             margin-bottom: 8px;
@@ -439,9 +441,11 @@ input:focus {
 
 .device-calendar {
     padding: 8px 16px 8px 16px;
+
     &-date {
         display: flex;
     }
+
     &-firstdate {
         //  width: 175px;
         height: 40px;
@@ -463,11 +467,13 @@ input:focus {
         /* 02. Secondary/900 */
         color: #3c3c3c;
     }
+
     &-arrow {
         margin-left: 15px;
         margin-right: 15px;
         margin-top: 15px;
     }
+
     &-lastdate {
         // width: 175px;
         height: 40px;
@@ -492,6 +498,7 @@ input:focus {
     &-period {
         display: flex;
         margin-top: 16px;
+
         &-btn {
             margin-right: 8px;
             font-style: normal;
@@ -516,9 +523,10 @@ input:focus {
     background: #c2e7c8;
 }
 .device-table {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 44px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 44px;
+
     &-header {
         font-size: 14px;
         line-height: 20px;
@@ -529,6 +537,7 @@ input:focus {
         padding-bottom: 12px;
         border-bottom: 1px solid rgba(33, 33, 33, 0.08);
     }
+
     &-row {
         display: flex;
         margin-top: 12px;
@@ -536,29 +545,50 @@ input:focus {
         border-bottom: 1px solid rgba(33, 33, 33, 0.08);
         font-family: "Roboto";
         font-style: normal;
-        font-weight: 700;
+        font-weight: 400;
         font-size: 14px;
         line-height: 20px;
         letter-spacing: 0.25px;
         color: rgba(0, 0, 0, 0.6);
     }
+
     &-work-container {
         display: flex;
     }
-    &-overflow{
+
+    &-overflow {
         height: 262px;
         overflow: auto;
     }
-    &-workstatus{
-        color: #23B04A;
+
+    &-workstatus {
+        color: #23b04a;
     }
-    &-svg{
-        margin-left: 5px;
+
+    &-svg {
+        margin-right: 20px;
+    }
+
+    &-svg-container {
+        // width: 30%;
+    }
+
+    &-results-container {
+        // width: 70%;
+    }
+    &-user {
+        color: #2e9bc2;
     }
 }
 
-.work-label{
-    font-weight:bold;
+.row-column4{
+display: flex;
+justify-content: space-between;
+
+}
+
+.work-label {
+    font-weight: bold;
     margin-right: 5px;
 }
 
@@ -575,7 +605,7 @@ input:focus {
 //     flex-grow: 0.5;
 // }
 
-.column1{
+.column1 {
     width: 14.5%;
 }
 

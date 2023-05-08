@@ -274,7 +274,6 @@ input:focus {
   color: rgba(0, 0, 0, 0.87);
 }
 .analytics-header-select {
-  width: 97px;
   height: 24px;
   border: 1px solid rgba(0, 0, 0, 0.38);
   border-radius: 2px;
@@ -485,7 +484,7 @@ input:focus {
   border-bottom: 1px solid rgba(33, 33, 33, 0.08);
   font-family: "Roboto";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
@@ -499,10 +498,18 @@ input:focus {
   overflow: auto;
 }
 .device-table-workstatus {
-  color: #23B04A;
+  color: #23b04a;
 }
 .device-table-svg {
-  margin-left: 5px;
+  margin-right: 20px;
+}
+.device-table-user {
+  color: #2e9bc2;
+}
+
+.row-column4 {
+  display: flex;
+  justify-content: space-between;
 }
 
 .work-label {

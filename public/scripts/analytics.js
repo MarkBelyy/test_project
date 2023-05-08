@@ -3,6 +3,7 @@ const dropdown = document.querySelector(".analytics-header-select")
 const dateInputStart = document.querySelector(".device-calendar-firstdate");
 const dateInputFinish = document.querySelector(".device-calendar-lastdate");
 const deviceTable = document.querySelector(".device-table-overflow");
+const saveBtn = document.querySelector(".device-save-btn");
 let deviceUsing = [];
 let startDate = Date.now() - 1209600000
 let finishDate = Date.now();
@@ -92,7 +93,7 @@ periodButtons.forEach(button => {
         periodButtons.forEach(btn => btn.classList.remove('period-prime'));
         // Добавляем класс только к нажатой кнопке
         event.target.classList.add('period-prime');
-        updateDisplayedInfo();
+        updateTable();
     });
 });
 
@@ -101,10 +102,8 @@ function updateTable() {
         deviceTable.removeChild(deviceTable.firstChild);
     }
     deviceUsing.forEach(item => {
-        console.log('item.start ', dateToTimestamp(item.start))
+        // console.log('item.start ', dateToTimestamp(item.start))
         if (dateToTimestamp(item.start) < finishDate && dateToTimestamp(item.start) > startDate) {
-            console.log('++++++++++++++++')
-            // Создаем новую строку таблицы
             const date = new Date(item.start);
             const formattedDate = new Intl.DateTimeFormat('ru-RU', {
                 day: 'numeric',
@@ -138,13 +137,17 @@ function updateTable() {
                 <p class="device-table-workmethod">${item.works.method ? item.works.method : ''}</p>
               </div>
             </div>
-            <div class="device-table-row-item  df column4">
-              <p class="device-table-result">${item.results ? item.results : ''}</p>
-              <svg class="device-table-svg" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M5.50001 9.50002L2.00001 6.00002L0.833344 7.16669L5.50001 11.8334L15.5 1.83335L14.3333 0.666687L5.50001 9.50002Z"
-                  fill="#23B04A" />
-              </svg>
+            <div class="device-table-row-item  row-column4 column4">
+            <div class="device-table-results-container>
+                <p class="device-table-results">${item.results ? item.results : ''}</p>
+              </div>
+              <div class="device-table-svg-container">
+                <svg class="device-table-svg" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M5.50001 9.50002L2.00001 6.00002L0.833344 7.16669L5.50001 11.8334L15.5 1.83335L14.3333 0.666687L5.50001 9.50002Z"
+                    fill="#23B04A" />
+                </svg>
+              </div>
             </div>
             <div class="device-table-row-item">
               <p class="device-table-user">${item.user ? item.user : ''}</p>
@@ -155,22 +158,24 @@ function updateTable() {
     })
 }
 
-function updateDisplayedInfo() {
-    updateTable()
-    console.log(`Start date: ${formatDate(startDate)}`);
-    console.log(`Finish date: ${formatDate(finishDate)}`);
-}
+saveBtn.addEventListener('click', () => {
+    const tableContent = deviceTable.outerHTML;
+    console.log(tableContent)
+    html2pdf()
+    .from(tableContent)
+    .save()
+});
 
 dateInputStart.addEventListener('change', () => {
     startDate = dateToTimestamp(dateInputStart.value)
     periodButtons.forEach(btn => btn.classList.remove('period-prime'));
-    updateDisplayedInfo();
+    updateTable();
 })
 
 dateInputFinish.addEventListener('change', () => {
     fainishDate = dateToTimestamp(dateInputFinish.value)
     periodButtons.forEach(btn => btn.classList.remove('period-prime'));
-    updateDisplayedInfo();
+    updateTable();
 })
 
 
