@@ -547,6 +547,10 @@ input:focus {
     &-table-work-container {
         display: flex;
     }
+    &-table-overflow{
+        height: 262px;
+        overflow: auto;
+    }
 }
 
 // .column1,

@@ -494,6 +494,10 @@ input:focus {
 .device-table-work-container {
   display: flex;
 }
+.device-table-overflow {
+  height: 262px;
+  overflow: auto;
+}
 
 .column1,
 .column2 {

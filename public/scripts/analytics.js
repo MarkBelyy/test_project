@@ -20,7 +20,7 @@ function formatDate(milliseconds) {
 
 function dateToTimestamp(dateStr) {
     return new Date(dateStr).getTime();
-  }
+}
 
 function handleDropdownOnLoad() {
     if (dropdown.value === "false") {
@@ -31,12 +31,13 @@ function handleDropdownOnLoad() {
     dateInputStart.value = formatDate(startDate)
     dateInputFinish.value = formatDate(finishDate)
     fetch(`/device/${dropdown.id}`)
-    .then((res) => res.json())
-    .then((data) => {
-        deviceUsing = data.using;
-        console.log("deviceUsing", deviceUsing);
-    })
-    .catch(error => console.error(error));
+        .then((res) => res.json())
+        .then((data) => {
+            deviceUsing = data.using;
+            console.log("deviceUsing", deviceUsing);
+            updateTable()
+        })
+        .catch(error => console.error(error));
 }
 
 
@@ -95,8 +96,67 @@ periodButtons.forEach(button => {
     });
 });
 
+function updateTable() {
+    while (deviceTable.firstChild) {
+        deviceTable.removeChild(deviceTable.firstChild);
+    }
+    deviceUsing.forEach(item => {
+        console.log('item.start ', dateToTimestamp(item.start))
+        if (dateToTimestamp(item.start) < finishDate && dateToTimestamp(item.start) > startDate) {
+            console.log('++++++++++++++++')
+            // Создаем новую строку таблицы
+            const date = new Date(item.start);
+            const formattedDate = new Intl.DateTimeFormat('ru-RU', {
+                day: 'numeric',
+                month: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+            }).format(date);
+
+            const row = document.createElement('div');
+            row.classList.add('device-table-row');
+            row.innerHTML = `
+            <div class="device-table-row-item column1">
+              <p class="device-table-startdate">${formattedDate}</p>
+            </div>
+            <div class="device-table-row-item column2">
+              <p class="device-table-workstatus">В работе</p>
+              <p class="device-table-worktype">${item.type}</p>
+            </div>
+            <div class="device-table-row-item column3">
+              <div class="device-table-work-container">
+                <p class="device-table-workcolumn-label">Номер колонки:</p>
+                <p class="device-table-workcolumn">${item.works.column}</p>
+              </div>
+              <div class="device-table-work-container">
+                <p class="device-table-worksample-label">Образец:</p>
+                <p class="device-table-worksample">${item.works.sample}</p>
+              </div>
+              <div class="device-table-work-container">
+                <p class="device-table-workmethod-label">Метод:</p>
+                <p class="device-table-workmethod">${item.works.method}</p>
+              </div>
+            </div>
+            <div class="device-table-row-item  df column4">
+              <p class="device-table-result">${item.results}</p>
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M5.50001 9.50002L2.00001 6.00002L0.833344 7.16669L5.50001 11.8334L15.5 1.83335L14.3333 0.666687L5.50001 9.50002Z"
+                  fill="#23B04A" />
+              </svg>
+            </div>
+            <div class="device-table-row-item">
+              <p class="device-table-user">${item.user}</p>
+            </div>
+`
+            deviceTable.appendChild(row);
+        }
+    })
+}
+
 function updateDisplayedInfo() {
-    
+    updateTable()
     console.log(`Start date: ${formatDate(startDate)}`);
     console.log(`Finish date: ${formatDate(finishDate)}`);
 }
