@@ -15,6 +15,10 @@ body {
   font-size: 500px;
 }
 
+.df {
+  display: flex;
+}
+
 .nav {
   display: flex;
   flex-direction: row;
@@ -394,10 +398,22 @@ input:focus {
   display: flex;
 }
 .device-calendar-firstdate {
-  width: 180px;
   height: 40px;
+  padding-left: 9px;
+  padding-right: 9px;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 143% */
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.25px;
+  /* 02. Secondary/900 */
+  color: #3c3c3c;
 }
 .device-calendar-arrow {
   margin-left: 15px;
@@ -405,10 +421,22 @@ input:focus {
   margin-top: 15px;
 }
 .device-calendar-lastdate {
-  width: 180px;
   height: 40px;
+  padding-left: 9px;
+  padding-right: 9px;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 143% */
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.25px;
+  /* 02. Secondary/900 */
+  color: #3c3c3c;
 }
 .device-calendar-period {
   display: flex;
@@ -451,21 +479,35 @@ input:focus {
   border-bottom: 1px solid rgba(33, 33, 33, 0.08);
 }
 .device-table-row {
+  display: flex;
   margin-top: 12px;
   padding-bottom: 110px;
   border-bottom: 1px solid rgba(33, 33, 33, 0.08);
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.device-table-work-container {
+  display: flex;
 }
 
 .column1,
-.column2,
-.column4 {
-  flex-grow: 1;
+.column2 {
+  width: 17.5%;
 }
 
 .column3 {
-  flex-grow: 3;
+  width: 32%;
+}
+
+.column4 {
+  width: 19.5%;
 }
 
 .column5 {
-  flex-grow: 0.5;
+  width: 13.5%;
 }/*# sourceMappingURL=style.css.map */

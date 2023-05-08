@@ -86,6 +86,20 @@ app.get('/analytics/:id', (req, res) => {
         })
 });
 
+app.get('/device/:id', (req, res) => {
+    Devices
+        .findById(req.params.id)
+        .then(device => {
+            res.json(device);
+        })
+    .catch(error => {
+        console.error(error);
+        res
+            .status(500)
+            .json({ error: 'Ошибка сервера' });
+    });
+});
+
 app.post('/device/work/:id', (req, res) => {
     console.log('deviceId ', req.params.id)
     console.log("req.body", req.body.free)
@@ -100,9 +114,9 @@ app.post('/device/work/:id', (req, res) => {
 
 app.post('/device/like/:id', (req, res) => {
     console.log('deviceId ', req.params.id)
-    console.log("req.body", req.body.free)
+    console.log("req.body", req.body.like)
 
-    Devices.findByIdAndUpdate(req.params.id, { $set: { free: req.body.free } })
+    Devices.findByIdAndUpdate(req.params.id, { $set: { like: req.body.like } })
         .then(() => res.json({ message: "Success" }))
         .catch((error) => {
             console.error(error);
