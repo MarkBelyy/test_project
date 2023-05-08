@@ -132,7 +132,17 @@ app.post('/device/like/:id', (req, res) => {
         });
 });
 
+app.post('/device/notification/:id', (req, res) => {
+    console.log('deviceId ', req.params.id)
+    console.log("req.body", req.body.like)
 
+    Devices.findByIdAndUpdate(req.params.id, { $set: { notification: req.body.notification } })
+        .then(() => res.json({ message: "Success" }))
+        .catch((error) => {
+            console.error(error);
+            res.status(500).json({ error: "Server Error" });
+        });
+});
 
 app.use((req, res) => {
     const title = 'Страница не найдена';

@@ -2,6 +2,8 @@ const searchInput = document.getElementById('search');
 const searchResults = document.getElementById('search-results');
 const dropdowns = document.querySelectorAll(".like-list-item-dropdown");
 const devicesList = document.querySelectorAll(".like-list-item-touch")
+const deviceNotification = document.querySelectorAll(".like-list-item-img2")
+let blurTimeout;
 
 function handleDropdownOnLoad() {
     dropdowns.forEach((dropdown) => {
@@ -71,7 +73,6 @@ const showResults = () => {
                         alt="dislike" id=${device._id}>`;
 
                         resultItem.appendChild(icon);
-
                         resultItem.addEventListener('click', () => {
                             console.log('Выбрано устройство:', device);
                             window.location.href = `/analytics/${device._id}`;
@@ -92,7 +93,37 @@ searchInput.addEventListener('input', showResults);
 
 searchInput.addEventListener('focus', showResults);
 
-        // searchInput.addEventListener('blur', () => {
-        //     searchResults.classList.remove('search-results-focus');
-        //     searchResults.innerHTML = '';
-        // });
+searchInput.addEventListener('blur', () => {
+    // Запускаем таймер на 100 мс перед выполнением действий при потере фокуса
+    blurTimeout = setTimeout(() => {
+        searchResults.classList.remove('search-results-focus');
+        searchResults.innerHTML = '';
+    }, 100);
+});
+
+
+deviceNotification.forEach((notification) => {
+
+    notification.addEventListener('click', (e) => {
+        console.log('e.target.id', e.target.id)
+        console.log('notification.src', notification.src)
+        let newnNtificationValue;
+        if (notification.src == "http://localhost:3000/img/bell1.svg") {
+            newnNtificationValue = 2;
+        } else if (notification.src == "http://localhost:3000/img/bell2.svg") {
+            newnNtificationValue = 3;
+        } else if (notification.src == "http://localhost:3000/img/bell3.svg") {
+            newnNtificationValue = 1;
+        }
+            console.log("newnNtificationValue", newnNtificationValue)
+        fetch(`/device/notification/${e.target.id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ notification: newnNtificationValue })
+        })
+            .then(() => {
+                notification.src = `/img/bell${newnNtificationValue}.svg`;
+            })
+            .catch(error => console.error(error));
+    })
+});

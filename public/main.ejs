@@ -2,73 +2,83 @@
 <html>
 
 <head>
-    <title>
-        <%= title %>
-    </title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap"
-        rel="stylesheet">
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <nav class="nav">
-            <img src="./img/Logo.svg" alt="logo">
-            <ul class="nav-ref">
-                <li class="nav-item"><a class="nav-ref-item nav-prime" href="/">ГЛАВНАЯ</a></li>
-                <li class="nav-item"><a class="nav-ref-item" href="analytics">АНАЛИТИКА</a></li>
-            </ul>
-            <img src="./img/ava40 2.svg" alt="ava">
-        </nav>
-    </header>
-    <main>
-        <div class="main-container">
-            <form class="search">
-                <input class="search-input" type="text" id="search" name="search" autocomplete="off"
-                    placeholder="Поиск прибора в Botanique по номеру, названию, подразделению и др.">
-            </form>
-            <div class="search-results" id="search-results"></div>
-            <div class="like">
-                <div class="like-header">
-                    <img class="like-img" src="./img/dislike.svg" alt="like">
-                    <h3 class="like-header-text">Любимые приборы</h3>
-                </div>
-                <div class="like-list">
-                    <div class="like-list-header">
-                        <h4 class="like-list-header-text">Название</h4>
-                        <h4 class="like-list-header-text">Статус</h4>
-                    </div>
-                    <div class="like-list-item-overflow">
-                        <% if (devices.length > 0) { %>
-                            <% devices.forEach(({ img, name, like, free,  _id}) => { %>
-                              <% if (like === true) { %>
-                                <div class="like-list-item"  id="<%= _id %>">
-                                  <div class="like-list-item-container1 like-list-item-touch" id="<%= _id %>">
-                                    <img src="<%= img %>" alt="device img" class="like-list-item-img1 like-list-item-touch" id="<%= _id %>">
-                                    <h4 class="like-list-item-text" id="<%= _id %>">
-                                      <%= name %>
-                                    </h4>
-                                  </div>
-                                  <div class="like-list-item-container2" id="<%= _id %>">
-                                    <select class="like-list-item-dropdown" id="<%= _id %>">
-                                      <option class="like-list-item-dropdown-option" value="true" <%= free === true ? 'selected' : '' %>>Свободен</option>
-                                      <option class="like-list-item-dropdown-option" value="false" <%= free === false ? 'selected' : '' %>>В работе</option>
-                                    </select>
-                                    <img src="./img/Vector.svg" alt="" class="like-list-item-img2" id="<%= _id %>">
-                                  </div>
-                                </div>
-                              <% } %>
-                            <% }) %>
-                          <% } %>
-                          
-                    </div>
-                </div>
-            </div>
+  <header>
+    <nav class="nav">
+      <img src="./img/Logo.svg" alt="logo">
+      <ul class="nav-ref">
+        <li class="nav-item"><a class="nav-ref-item nav-prime" href="/">ГЛАВНАЯ</a></li>
+        <li class="nav-item"><a class="nav-ref-item" href="analytics">АНАЛИТИКА</a></li>
+      </ul>
+      <img src="./img/ava40 2.svg" alt="ava">
+    </nav>
+  </header>
+  <main>
+    <div class="main-container">
+      <div class="search-input-wrapper">
+        <form class="search">
+          <input class="search-input" type="text" id="search" name="search" autocomplete="off"
+            placeholder="Поиск прибора в Botanique по номеру, названию, подразделению и др.">
+          <img class="search-input-svg" src="./img/qr.svg" alt="qr" srcset="">
+      </div>
+      </form>
+      <div class="search-results" id="search-results"></div>
+      <div class="like">
+        <div class="like-header">
+          <img class="like-img" src="./img/dislike.svg" alt="like">
+          <h3 class="like-header-text">Любимые приборы</h3>
         </div>
-    </main>
-    <script src="./scripts/main.js"></script>
+        <div class="like-list">
+          <div class="like-list-header">
+            <h4 class="like-list-header-text">Название</h4>
+            <h4 class="like-list-header-text">Статус</h4>
+          </div>
+          <div class="like-list-item-overflow">
+            <% if (devices.length> 0) { %>
+              <% devices.forEach(({ img, name, like, free, notification, _id})=> { %>
+                <% if (like===true) { %>
+                  <div class="like-list-item" id="<%= _id %>">
+                    <div class="like-list-item-container1 like-list-item-touch" id="<%= _id %>">
+                      <img src="<%= img %>" alt="device img" class="like-list-item-img1 like-list-item-touch"
+                        id="<%= _id %>">
+                      <h4 class="like-list-item-text" id="<%= _id %>">
+                        <%= name %>
+                      </h4>
+                    </div>
+                    <div class="like-list-item-container2" id="<%= _id %>">
+                      <select class="like-list-item-dropdown" id="<%= _id %>">
+                        <option class="like-list-item-dropdown-option" value="true" <%=free===true ? 'selected' : '' %>
+                          >Свободен</option>
+                        <option class="like-list-item-dropdown-option" value="false" <%=free===false ? 'selected' : ''
+                          %>>В работе</option>
+                      </select>
+                      <div class="like-list-item-img2-container">
+                        <img src="./img/bell<%= notification%>.svg" alt="notification" class="like-list-item-img2"
+                          id="<%= _id %>">
+                      </div>
+                    </div>
+                  </div>
+                  <% } %>
+                    <% }) %>
+                      <% } %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="./scripts/main.js"></script>
 </body>
+
 </html>

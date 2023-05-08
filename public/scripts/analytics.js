@@ -173,7 +173,7 @@ dateInputStart.addEventListener('change', () => {
 })
 
 dateInputFinish.addEventListener('change', () => {
-    fainishDate = dateToTimestamp(dateInputFinish.value)
+    finishDate = dateToTimestamp(dateInputFinish.value)
     periodButtons.forEach(btn => btn.classList.remove('period-prime'));
     updateTable();
 })

@@ -21,6 +21,12 @@ const devicesSchema = new Schema({
     free: {
         type: Boolean,
         required: true,
+    },
+    notification: {
+        type: Number,
+        min: 1,
+        max: 3,
+        required: true
     }
 });
 
