@@ -4,22 +4,23 @@ const app = express();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const Devices = require('./models/devices');
+require('dotenv').config();
 
 
 app.set('view engine', 'ejs');
 
 const PORT = 3000;
-const db = 'mongodb+srv://markbelyy:myjM9TpEqSfCO4cm@biocad-test.gouqped.mongodb.net/botanique';
+const db = '';
 
 mongoose
-    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((res) => console.log('Connected to DB'))
     .catch((err) => console.error(err))
 
 const createPath = (page) => path.resolve(__dirname, 'public', `${page}.ejs`)
 
-app.listen(PORT, (error) => {
-    error ? console.error(errer) : console.log(`listen ${PORT}`)
+app.listen(process.env.PORT, (error) => {
+    error ? console.error(errer) : console.log(`listen ${process.env.PORT}`)
 });
 
 app.use(express.urlencoded({ extended: false }));
